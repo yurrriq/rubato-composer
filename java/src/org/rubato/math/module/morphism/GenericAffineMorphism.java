@@ -326,7 +326,7 @@ public final class GenericAffineMorphism extends ModuleMorphism {
             reader.setError("Type %%1 is missing child of type <%2>.", getElementTypeName(), MODULE);
             return null;            
         }
-        Module domain = reader.parseModule(m);
+        org.rubato.math.module.Module domain = reader.parseModule(m);
         if (domain == null) {
             return null;
         }
@@ -335,7 +335,7 @@ public final class GenericAffineMorphism extends ModuleMorphism {
             reader.setError("Type %%1 is missing second child of type <%2>.", getElementTypeName(), MODULE);
             return null;            
         }
-        Module codomain = reader.parseModule(m);
+        org.rubato.math.module.Module codomain = reader.parseModule(m);
         if (codomain == null) {
             return null;
         }
@@ -391,7 +391,7 @@ public final class GenericAffineMorphism extends ModuleMorphism {
     }
     
 
-    private GenericAffineMorphism(Module domain, Module codomain) {
+    private GenericAffineMorphism(org.rubato.math.module.Module domain, org.rubato.math.module.Module codomain) {
         super(domain, codomain);
         ring = domain.getRing();
         dim = domain.getDimension();

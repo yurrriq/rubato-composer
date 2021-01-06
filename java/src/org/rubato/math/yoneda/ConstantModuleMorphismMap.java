@@ -58,7 +58,7 @@ public final class ConstantModuleMorphismMap extends ModuleMorphismMap {
      * The codomain is domain of the element.
      * The domain is the specified one. 
      */
-    public ConstantModuleMorphismMap(Module domain, ModuleElement element) {
+    public ConstantModuleMorphismMap(org.rubato.math.module.Module domain, ModuleElement element) {
         super();
         this.moduleElement = element;
         this.domain = domain;
@@ -79,7 +79,7 @@ public final class ConstantModuleMorphismMap extends ModuleMorphismMap {
     }
     
     
-    public Module getDomain() {
+    public org.rubato.math.module.Module getDomain() {
         if (domain == null) {
             domain = getCodomain().getNullModule();
         }
@@ -87,7 +87,7 @@ public final class ConstantModuleMorphismMap extends ModuleMorphismMap {
     }
 
 
-    public Module getCodomain() {
+    public org.rubato.math.module.Module getCodomain() {
         if (codomain == null) {
             codomain = moduleElement.getModule();
         }
@@ -152,7 +152,7 @@ public final class ConstantModuleMorphismMap extends ModuleMorphismMap {
     
     public ModuleMorphismMap changeDomain(ModuleMorphism morphism) {
         if (morphism.getCodomain().equals(getDomain())) {
-            Module newDomain = morphism.getDomain();
+            org.rubato.math.module.Module newDomain = morphism.getDomain();
             if (newDomain.equals(getDomain())) {
                 return this;
             }
@@ -166,7 +166,7 @@ public final class ConstantModuleMorphismMap extends ModuleMorphismMap {
     }
     
 
-    public ModuleMorphismMap changeDomain(Module newAddress) {
+    public ModuleMorphismMap changeDomain(org.rubato.math.module.Module newAddress) {
         return new ConstantModuleMorphismMap(newAddress, getElement());
     }
 
@@ -265,7 +265,7 @@ public final class ConstantModuleMorphismMap extends ModuleMorphismMap {
             reader.setError("<%1> of type %%2 is missing child element <%3>.", MORPHISMMAP, getElementTypeName(), MODULE);
             return null;
         }
-        Module dom = reader.parseModule(childElement);
+        org.rubato.math.module.Module dom = reader.parseModule(childElement);
         childElement = XMLReader.getNextSibling(childElement, MODULEELEMENT);
         if (childElement == null) {
             reader.setError("<%1> of type %%2 is missing child element <%3>.", MORPHISMMAP, getElementTypeName(), MODULEELEMENT);
@@ -296,6 +296,6 @@ public final class ConstantModuleMorphismMap extends ModuleMorphismMap {
 
 
     private ModuleElement  moduleElement;
-    private Module         domain   = null;
-    private Module         codomain = null;
+    private org.rubato.math.module.Module         domain   = null;
+    private org.rubato.math.module.Module         codomain = null;
 }

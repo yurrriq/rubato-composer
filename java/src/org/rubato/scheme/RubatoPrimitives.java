@@ -804,7 +804,7 @@ abstract class RubatoPrimitives {
                 List<ModuleElement>elementList = new LinkedList<ModuleElement>();
                 ModuleElement first = sexprToModuleElement(v[0]); 
                 if (first != null) {
-                    Module module = first.getModule();
+                    org.rubato.math.module.Module module = first.getModule();
                     elementList.add(first);
                     for (int i = 1; i < v.length; i++) {
                         ModuleElement element = sexprToModuleElement(v[i]);
@@ -816,7 +816,7 @@ abstract class RubatoPrimitives {
                         }
                     }
                     if (module.isRing()) {
-                        Module resMod = ((Ring)module).getFreeModule(v.length);
+                        org.rubato.math.module.Module resMod = ((Ring)module).getFreeModule(v.length);
                         return resMod.createElement(elementList);
                     }
                     else {

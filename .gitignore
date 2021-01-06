@@ -1,6 +1,7 @@
 *.class
 java/dist/
 javadoc
+result*
 rubato-api-*
 rubato-bin-*
 rubato-src-*

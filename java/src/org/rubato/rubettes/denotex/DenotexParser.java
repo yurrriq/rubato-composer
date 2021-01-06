@@ -173,9 +173,9 @@ public final class DenotexParser implements DenotexParserConstants {
             case Yoneda.SIMPLE: {
                 try {
                     if (crs.size() == 1)
-                        form = new SimpleForm(n, (Module)crs.get(0));
+                        form = new SimpleForm(n, (org.rubato.math.module.Module)crs.get(0));
                     else
-                        form = new SimpleForm(n, (Module)crs.get(0),
+                        form = new SimpleForm(n, (org.rubato.math.module.Module)crs.get(0),
                                                       (ModuleElement)crs.get(1),
                                                       (ModuleElement)crs.get(2));
                 } catch(Exception e) { throw parseError("Form build failed: " + e.getMessage()); }
@@ -240,7 +240,7 @@ public final class DenotexParser implements DenotexParserConstants {
         }
 
 
-    private Denotator defineDenotator(NameEntry name, Module address, Form form, List cds)
+    private Denotator defineDenotator(NameEntry name, org.rubato.math.module.Module address, Form form, List cds)
         throws ParseException {
         try {
             if (name != null && lookupDenotator(name) != null)
@@ -267,7 +267,7 @@ public final class DenotexParser implements DenotexParserConstants {
     /*
      * $$$RA: this should be moved somewhere else
      */
-    private Module makeModule(String s, int sub, int sup) throws ParseException {
+    private org.rubato.math.module.Module makeModule(String s, int sub, int sup) throws ParseException {
         // RA: ZASCII ist maintained here for backward compability
         if (s.equals("ZString") || s.equals("ZASCII")) {
             if (sup != -1) throw parseError("Illegal module '" + s + "^n'");
@@ -599,7 +599,7 @@ public final class DenotexParser implements DenotexParserConstants {
 final public List simpleCrs(int type) throws ParseException {
     checkDelimiters(Yoneda.SIMPLE, type);
     List c = new ArrayList(1);
-    Module m;
+    org.rubato.math.module.Module m;
     ModuleElement lo = null;
     ModuleElement hi = null;
     jj_consume_token(26);
@@ -769,8 +769,8 @@ final public List simpleCrs(int type) throws ParseException {
     denotatorDefinition(name, null, null);
   }
 
-  final public Denotator denotatorDefinition(NameEntry name, Module expectedAddress, Form expectedForm) throws ParseException {
-    Module a;          // address
+  final public Denotator denotatorDefinition(NameEntry name, org.rubato.math.module.Module expectedAddress, Form expectedForm) throws ParseException {
+    org.rubato.math.module.Module a;          // address
     NameEntry fname;   // form name
     Form f;            // form
     List c;
@@ -800,8 +800,8 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public Module address() throws ParseException {
-    Module a = null;
+  final public org.rubato.math.module.Module address() throws ParseException {
+    org.rubato.math.module.Module a = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case IDENTIFIER:
     case 37:
@@ -817,7 +817,7 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public List cds(Module address, Form form) throws ParseException {
+  final public List cds(org.rubato.math.module.Module address, Form form) throws ParseException {
     List l;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case 26:
@@ -844,9 +844,9 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public List simpleCds(Module address, Form form) throws ParseException {
+  final public List simpleCds(org.rubato.math.module.Module address, Form form) throws ParseException {
     checkDelimiters(Yoneda.SIMPLE, form.getType());
-    Module m = form.getIdentifier().getCodomainModule();
+    org.rubato.math.module.Module m = form.getIdentifier().getCodomainModule();
     List c = new ArrayList(1);
     ModuleElement e;
     jj_consume_token(26);
@@ -857,7 +857,7 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public List limitCds(Module address, Form form) throws ParseException {
+  final public List limitCds(org.rubato.math.module.Module address, Form form) throws ParseException {
     checkDelimiters(Yoneda.LIMIT, form.getType());
     FormDiagram diag = (FormDiagram)form.getIdentifier().getCodomainDiagram();
     List c = new ArrayList();
@@ -891,7 +891,7 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public List colimitCds(Module address, Form form) throws ParseException {
+  final public List colimitCds(org.rubato.math.module.Module address, Form form) throws ParseException {
     checkDelimiters(Yoneda.COLIMIT, form.getType());
     FormDiagram diag = (FormDiagram)form.getIdentifier().getCodomainDiagram();
     List c = new ArrayList(2);
@@ -911,7 +911,7 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public List powerCds(Module address, Form form) throws ParseException {
+  final public List powerCds(org.rubato.math.module.Module address, Form form) throws ParseException {
     checkDelimiters(Yoneda.POWER, form.getType());
     FormDiagram diag = (FormDiagram)form.getIdentifier().getCodomainDiagram();
     Form ff = diag.getForm(0);
@@ -959,7 +959,7 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public List listCds(Module address, Form form) throws ParseException {
+  final public List listCds(org.rubato.math.module.Module address, Form form) throws ParseException {
     checkDelimiters(Yoneda.LIST, form.getType());
     FormDiagram diag = (FormDiagram)form.getIdentifier().getCodomainDiagram();
     Form ff = diag.getForm(0);
@@ -1007,7 +1007,7 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public Denotator denotator(Module address, Form form) throws ParseException {
+  final public Denotator denotator(org.rubato.math.module.Module address, Form form) throws ParseException {
     Denotator d = null;
     NameEntry name;
     if (jj_2_5(2)) {
@@ -1040,7 +1040,7 @@ final public List simpleCrs(int type) throws ParseException {
       d = denotatorDefinition(null, address, form);
                 {if (true) return d;}
     } else if (jj_2_7(2)) {
-            Module m = form.getIdentifier().getCodomainModule();
+            org.rubato.math.module.Module m = form.getIdentifier().getCodomainModule();
         List c = new ArrayList(1);
                 LinkedList elements;
       elements = basicElement(m);
@@ -1109,7 +1109,7 @@ final public List simpleCrs(int type) throws ParseException {
 ////////////////////////////////////////////////////////////////////////////////
   final public void moduleDefinition() throws ParseException {
     String n;
-    Module m;
+    org.rubato.math.module.Module m;
     n = moduleName();
     jj_consume_token(31);
     m = module();
@@ -1125,8 +1125,8 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public Module module() throws ParseException {
-    Module m = null;
+  final public org.rubato.math.module.Module module() throws ParseException {
+    org.rubato.math.module.Module m = null;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
     case IDENTIFIER:
       m = basicModule();
@@ -1172,7 +1172,7 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public Module basicModule() throws ParseException {
+  final public org.rubato.math.module.Module basicModule() throws ParseException {
     String n;
     int sub = -1;
     int sup = -1;
@@ -1200,7 +1200,7 @@ final public List simpleCrs(int type) throws ParseException {
         else {
             if (sub != -1 || sup != -1)
                 {if (true) throw parseError("Sub- or superscript not allowed for module name.");}
-            Module m = t.modules().get(n);
+            org.rubato.math.module.Module m = t.modules().get(n);
             if (m == null)
                 {if (true) throw parseError("Module '" + n + "' not defined.");}
             {if (true) return m;}
@@ -1215,14 +1215,14 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public ModuleElement moduleElement(Module m) throws ParseException {
+  final public ModuleElement moduleElement(org.rubato.math.module.Module m) throws ParseException {
     LinkedList elements;
     elements = compositeElement(m);
         {if (true) return m.createElement(elements);}
     throw new Error("Missing return statement in function");
   }
 
-  final public LinkedList compositeElement(Module m) throws ParseException {
+  final public LinkedList compositeElement(org.rubato.math.module.Module m) throws ParseException {
         LinkedList elements = new LinkedList();
         LinkedList newElements;
     switch ((jj_ntk==-1)?jj_ntk():jj_ntk) {
@@ -1282,7 +1282,7 @@ final public List simpleCrs(int type) throws ParseException {
     throw new Error("Missing return statement in function");
   }
 
-  final public LinkedList basicElement(Module m) throws ParseException {
+  final public LinkedList basicElement(org.rubato.math.module.Module m) throws ParseException {
         LinkedList elements = new LinkedList();
     if (jj_2_8(2)) {
                    Rational q;

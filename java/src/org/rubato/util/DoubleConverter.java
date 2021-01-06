@@ -49,7 +49,7 @@ public abstract class DoubleConverter {
      * 
      * @return null if no such converter could be created
      */
-    public static DoubleConverter makeDoubleConverter(Module m) {
+    public static DoubleConverter makeDoubleConverter(org.rubato.math.module.Module m) {
         if (m.equals(RRing.ring)) {
             return rconverter;
         }

@@ -1713,7 +1713,7 @@ public class JComposer extends JFrame implements Observer {
     private File         currentDirectory = null;
     private JFileChooser fileChooser      = null;
 
-    private static final Dimension PREFERRED_SIZE = new Dimension(900, 800);
+    private static final Dimension PREFERRED_SIZE = new Dimension(3840, 2160);
     private static final String    TITLE_STRING   = "Rubato Composer"; //$NON-NLS-1$
     private static final String    EXTENSION      = "rbo"; //$NON-NLS-1$
     private static final String    DOT_EXTENSION  = "."+EXTENSION; //$NON-NLS-1$

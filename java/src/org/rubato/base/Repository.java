@@ -394,7 +394,7 @@ public class Repository
      * Returns a simple form with the given module.
      * The new form is given the name "_Simple(moduleName)".
      */
-    public SimpleForm autogenSimpleForm(Module module) {
+    public SimpleForm autogenSimpleForm(org.rubato.math.module.Module module) {
         SimpleForm simpleForm = autogenSimpleForms.get(module);
         if (simpleForm == null) {
             String name = "_Simple("+module.toString()+")";
@@ -543,7 +543,7 @@ public class Repository
         autogenListForms    = new HashMap<Form,ListForm>(256);
         autogenLimitForms   = new HashMap<ArrayList<Form>,LimitForm>(256);
         autogenColimitForms = new HashMap<ArrayList<Form>,ColimitForm>(256);
-        autogenSimpleForms  = new HashMap<Module,SimpleForm>(256);
+        autogenSimpleForms  = new HashMap<org.rubato.math.module.Module,SimpleForm>(256);
         
         env = Env.makeGlobalEnvironment();
         code = "";
@@ -604,19 +604,19 @@ public class Repository
     }
     
     
-    public void registerBuiltinModule(String name, Module module) {
+    public void registerBuiltinModule(String name, org.rubato.math.module.Module module) {
         modules.put(name, new ModuleItem(name, module, true));
     }
     
     
-    public void registerModule(String name, Module module) {
+    public void registerModule(String name, org.rubato.math.module.Module module) {
         modules.put(name, new ModuleItem(name, module, false));
         setChanged();
         notifyObservers();
     }
     
     
-    public Module getModule(String name) {
+    public org.rubato.math.module.Module getModule(String name) {
         ModuleItem item = modules.get(name);
         return (item == null)?null:item.getModule();
     }
@@ -669,7 +669,7 @@ public class Repository
     }
     
     
-    public List<String> getModuleMorphismNames(Module domain, Module codomain) {
+    public List<String> getModuleMorphismNames(org.rubato.math.module.Module domain, org.rubato.math.module.Module codomain) {
         LinkedList<String> list = new LinkedList<String>();
         for (Entry<String,ModuleMorphismItem> entry : moduleMorphisms.entrySet()) {
             ModuleMorphism m = entry.getValue().getModuleMorphism();
@@ -875,12 +875,12 @@ public class Repository
     private final class ModuleItem
             extends Item
             implements Comparable<ModuleItem> {
-        public ModuleItem(String name, Module module, boolean builtin) {
+        public ModuleItem(String name, org.rubato.math.module.Module module, boolean builtin) {
             super(builtin);
             this.name = name;
             this.module = module;
         }
-        public Module getModule() {
+        public org.rubato.math.module.Module getModule() {
             return module;
         }
         public String getName() {
@@ -890,7 +890,7 @@ public class Repository
             return name.compareTo(o.name);
         }
         private String name;
-        private Module module;
+        private org.rubato.math.module.Module module;
     }
     
     
@@ -1119,7 +1119,7 @@ public class Repository
     private HashMap<Form,ListForm>               autogenListForms;
     private HashMap<ArrayList<Form>,LimitForm>   autogenLimitForms;
     private HashMap<ArrayList<Form>,ColimitForm> autogenColimitForms;
-    private HashMap<Module,SimpleForm>           autogenSimpleForms;
+    private HashMap<org.rubato.math.module.Module,SimpleForm>           autogenSimpleForms;
     
     // Containers for temporary forms and denotators
     private LinkedList<Form> tmpForms = new LinkedList<Form>();

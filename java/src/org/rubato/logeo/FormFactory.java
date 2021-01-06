@@ -95,7 +95,7 @@ public final class FormFactory {
      * @param name the name of the new form
      * @param module the module that is the base for the new form
      */
-    public static SimpleForm makeModuleForm(String name, Module module) {
+    public static SimpleForm makeModuleForm(String name, org.rubato.math.module.Module module) {
         return new SimpleForm(NameDenotator.make(name), module);
     }
 

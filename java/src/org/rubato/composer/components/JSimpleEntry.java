@@ -29,7 +29,7 @@ import org.rubato.math.module.*;
 
 public abstract class JSimpleEntry extends JPanel {
 
-    public static JSimpleEntry make(Module module) {
+    public static JSimpleEntry make(org.rubato.math.module.Module module) {
         if (module instanceof ZFreeModule ||
             module instanceof RFreeModule ||
             module instanceof ZnFreeModule ||

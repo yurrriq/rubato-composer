@@ -50,9 +50,9 @@ public abstract class CanonicalMorphism extends ModuleMorphism {
      * 
      * @return null iff no such morphism could be created
      */
-    public static ModuleMorphism make(Module domain, Module codomain) {
+    public static ModuleMorphism make(org.rubato.math.module.Module domain, org.rubato.math.module.Module codomain) {
         // check if the required morphism is in the cache
-        Pair<Module,Module> pair = Pair.makePair(domain, codomain);
+        Pair<org.rubato.math.module.Module,org.rubato.math.module.Module> pair = Pair.makePair(domain, codomain);
         ModuleMorphism morphism = canonicalMorphisms.get(pair);
         if (morphism == null) {
             // if not, try to create it
@@ -72,7 +72,7 @@ public abstract class CanonicalMorphism extends ModuleMorphism {
      * 
      * @return null iff noch such morphism could be created
      */
-    private static ModuleMorphism makeCanonicalMorphism(final Module domain, final Module codomain) {
+    private static ModuleMorphism makeCanonicalMorphism(final org.rubato.math.module.Module domain, final org.rubato.math.module.Module codomain) {
         ModuleMorphism morphism = null;
         if (domain.isNullModule()) {
             // if the domain is a null module, a canonical morphism maps
@@ -239,8 +239,8 @@ public abstract class CanonicalMorphism extends ModuleMorphism {
     
     public ModuleMorphism fromXML(XMLReader reader, Element element) {
         assert(element.getAttribute(TYPE_ATTR).equals(getElementTypeName()));
-        Module m1;
-        Module m2;
+        org.rubato.math.module.Module m1;
+        org.rubato.math.module.Module m2;
         Element childElement = XMLReader.getChild(element, MODULE);
         if (childElement != null) {
             m1 = reader.parseModule(childElement);
@@ -284,10 +284,10 @@ public abstract class CanonicalMorphism extends ModuleMorphism {
     }
 
     
-    protected CanonicalMorphism(Module domain, Module codomain) {
+    protected CanonicalMorphism(org.rubato.math.module.Module domain, org.rubato.math.module.Module codomain) {
         super(domain, codomain);
     }
     
 
-    private static HashMap<Pair<Module,Module>,ModuleMorphism> canonicalMorphisms = new HashMap<Pair<Module,Module>,ModuleMorphism>();
+    private static HashMap<Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>,ModuleMorphism> canonicalMorphisms = new HashMap<Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>,ModuleMorphism>();
 }

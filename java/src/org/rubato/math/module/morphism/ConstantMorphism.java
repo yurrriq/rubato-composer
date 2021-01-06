@@ -41,7 +41,7 @@ public final class ConstantMorphism extends ModuleMorphism {
      * Creates a constant morphism with value <code>v</code>
      * and domain <code>m</code>.
      */
-    public ConstantMorphism(Module m, ModuleElement value) {
+    public ConstantMorphism(org.rubato.math.module.Module m, ModuleElement value) {
         super(m, value.getModule());
         this.value = value;
     }
@@ -148,7 +148,7 @@ public final class ConstantMorphism extends ModuleMorphism {
     
     public ModuleMorphism fromXML(XMLReader reader, Element element) {
         assert(element.getAttribute(TYPE_ATTR).equals(getElementTypeName()));
-        Module domain = null;
+        org.rubato.math.module.Module domain = null;
         Element childElement = XMLReader.getChild(element, MODULE);
         if (childElement != null) {
             domain = reader.parseModule(childElement);

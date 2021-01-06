@@ -14,7 +14,7 @@ import org.rubato.math.module.*;
 
 public abstract class JElementSlider extends JPanel {
 
-    public static JElementSlider make(Module module) {
+    public static JElementSlider make(org.rubato.math.module.Module module) {
         if (module == null) {
             return null;
         }

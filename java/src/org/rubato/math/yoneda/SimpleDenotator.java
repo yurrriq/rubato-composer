@@ -63,8 +63,8 @@ public final class SimpleDenotator extends Denotator {
             throws DomainException {
         super(name, form);
 
-        Module address = morphism.getDomain();
-        Module module = form.getModule();
+        org.rubato.math.module.Module address = morphism.getDomain();
+        org.rubato.math.module.Module module = form.getModule();
         if (!module.equals(morphism.getCodomain())) {
             throw new DomainException(module, morphism.getCodomain());
         }
@@ -86,8 +86,8 @@ public final class SimpleDenotator extends Denotator {
             throws DomainException {
         super(name, form);
         
-        Module address = element.getModule().getNullModule();
-        Module module = form.getModule();
+        org.rubato.math.module.Module address = element.getModule().getNullModule();
+        org.rubato.math.module.Module module = form.getModule();
         if (!module.hasElement(element)) {
             throw new DomainException(module, element.getModule());
         }
@@ -106,11 +106,11 @@ public final class SimpleDenotator extends Denotator {
      * @throws DomainException if the element is not contained
      *                         in the codomain required by the form
      */
-    public SimpleDenotator(NameDenotator name, SimpleForm form, Module address, ModuleElement element)
+    public SimpleDenotator(NameDenotator name, SimpleForm form, org.rubato.math.module.Module address, ModuleElement element)
             throws DomainException {
         super(name, form);
         
-        Module module = form.getModule();
+        org.rubato.math.module.Module module = form.getModule();
         if (!module.hasElement(element)) {
             throw new DomainException(module, element.getModule());
         }
@@ -133,8 +133,8 @@ public final class SimpleDenotator extends Denotator {
             throws DomainException {
         super(name, form);
 
-        Module address = map.getDomain();
-        Module module = form.getModule();
+        org.rubato.math.module.Module address = map.getDomain();
+        org.rubato.math.module.Module module = form.getModule();
         if (!module.equals(map.getCodomain())) {
             throw new DomainException(module, map.getCodomain()); 
         }
@@ -215,7 +215,7 @@ public final class SimpleDenotator extends Denotator {
 
     
     @Override
-    public Denotator changeAddress(Module newAddress) {
+    public Denotator changeAddress(org.rubato.math.module.Module newAddress) {
         if (getAddress().equals(newAddress)) {
             return this;
         }
@@ -803,7 +803,7 @@ public final class SimpleDenotator extends Denotator {
     @Unsafe
     @Internal
     public static SimpleDenotator _make_unsafe(NameDenotator name, SimpleForm form,
-                                               Module address, ModuleElement element) {
+                                               org.rubato.math.module.Module address, ModuleElement element) {
         CompoundMorphism coordinate = new CompoundMorphism(address, form.getModule(), new ConstantModuleMorphismMap(address, element));
         SimpleDenotator res = new SimpleDenotator(name, form, coordinate, coordinate);
         assert(res._is_valid());

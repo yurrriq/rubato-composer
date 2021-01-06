@@ -236,7 +236,7 @@ public class ReorderMorphism extends ModuleMorphism {
         
         Element childElement = XMLReader.getChild(element, MODULE);
         if (childElement != null) {
-            Module m = reader.parseModule(childElement);
+            org.rubato.math.module.Module m = reader.parseModule(childElement);
             if (m == null) {
                 return null;
             }

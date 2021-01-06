@@ -35,7 +35,7 @@ public final class Address {
      * Returns a common module for the given list of modules.
      * @return null if no common module could be found
      */
-    public static Module getCommonModule(Module ... modules) {
+    public static org.rubato.math.module.Module getCommonModule(org.rubato.math.module.Module ... modules) {
         return getCommonModule(Arrays.asList(modules));
     }
 
@@ -44,10 +44,10 @@ public final class Address {
      * Returns a common module for the given list of modules.
      * @return null if no common module could be found
      */
-    public static Module getCommonModule(List<Module> modules) {
+    public static org.rubato.math.module.Module getCommonModule(List<org.rubato.math.module.Module> modules) {
         LinkedList<Ring> rings = new LinkedList<Ring>();
         int dim = 0;
-        for (Module module : modules) {
+        for (org.rubato.math.module.Module module : modules) {
             rings.add(module.getRing());
             // compute largest dimension
             if (module.getDimension() > dim) {
@@ -68,14 +68,14 @@ public final class Address {
      * Returns a common module for the addresses of the given list of denotators.
      * @return null if no common module could be found
      */
-    public static Module getCommonDenotatorModule(List<Denotator> denotators) {
+    public static org.rubato.math.module.Module getCommonDenotatorModule(List<Denotator> denotators) {
         if (denotators.size() == 0) {
             return ZProperFreeModule.nullModule;
         }
         LinkedList<Ring> rings = new LinkedList<Ring>();
         int dim = 0;
         for (Denotator d : denotators) {
-            Module module = d.getAddress();
+            org.rubato.math.module.Module module = d.getAddress();
             rings.add(module.getRing());
             // compute largest dimension
             dim = Math.max(module.getDimension(), dim);
@@ -92,9 +92,9 @@ public final class Address {
     /**
      * Returns the largest dimension among the given modules.
      */
-    public static int getMaxDimension(Collection<Module> modules) {
+    public static int getMaxDimension(Collection<org.rubato.math.module.Module> modules) {
         int n = 0;
-        for (Module module : modules) {
+        for (org.rubato.math.module.Module module : modules) {
             if (module.getDimension() > n) {
                 n = module.getDimension();
             }
@@ -108,7 +108,7 @@ public final class Address {
      * @return null if the minimal ring could not be found
      */
     public static Ring getMinRing(Collection<Ring> rings) {
-        Pair<Module,Module> ringPair = new Pair<Module,Module>();
+        Pair<org.rubato.math.module.Module,org.rubato.math.module.Module> ringPair = new Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>();
         Ring minRing = null;
         for (Ring ring : rings) {
             if (minRing == null) {
@@ -131,7 +131,7 @@ public final class Address {
      * Returns the minimal ring of the two rings in <code>ringPair</code>.
      * Each pair is cached for later lookup.
      */
-    private static Ring getMinRing(Pair<Module,Module> ringPair) {
+    private static Ring getMinRing(Pair<org.rubato.math.module.Module,org.rubato.math.module.Module> ringPair) {
         Ring ring = ringOrder.get(ringPair);
         if (ring == null) {
             ring = getMinRing((Ring)ringPair.first, (Ring)ringPair.second);
@@ -213,7 +213,7 @@ public final class Address {
             }
             int len = ring1.getFactorCount();
             Ring[] factors = new Ring[len];
-            Pair<Module,Module> ringPair = new Pair<Module,Module>(); 
+            Pair<org.rubato.math.module.Module,org.rubato.math.module.Module> ringPair = new Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>(); 
             for (int i = 0; i < len; i++) {
                 ringPair.first = ring1.getFactor(i);
                 ringPair.second = pRing.getFactor(i);
@@ -255,7 +255,7 @@ public final class Address {
 
     
     private static Ring getMinStringRing(StringRing ring1, Ring ring2) {
-        Pair<Module,Module> ringPair = new Pair<Module,Module>();
+        Pair<org.rubato.math.module.Module,org.rubato.math.module.Module> ringPair = new Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>();
         if (ring2 instanceof PolynomialRing) {
             ringPair.first = ring1.getFactorRing();
             ringPair.second = ((PolynomialRing)ring2).getCoefficientRing();
@@ -283,6 +283,6 @@ public final class Address {
      */
     private Address() { /* pure static class */ }
     
-    private static HashMap<Pair<Module,Module>,Ring> ringOrder = new HashMap<Pair<Module,Module>,Ring>();
+    private static HashMap<Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>,Ring> ringOrder = new HashMap<Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>,Ring>();
 }
 

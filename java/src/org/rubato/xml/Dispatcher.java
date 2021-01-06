@@ -38,10 +38,10 @@ public class Dispatcher {
     }
 
     
-    public Module resolveModule(XMLReader reader, Element moduleElement) {
-        Module module = null;
+    public org.rubato.math.module.Module resolveModule(XMLReader reader, Element moduleElement) {
+        org.rubato.math.module.Module module = null;
         String moduleName = moduleElement.getAttribute(TYPE_ATTR);
-        XMLInputOutput<Module> dispatch = modules.get(moduleName);
+        XMLInputOutput<org.rubato.math.module.Module> dispatch = modules.get(moduleName);
 
         if (dispatch != null) {
             module = dispatch.fromXML(reader, moduleElement);
@@ -51,7 +51,7 @@ public class Dispatcher {
             try {
                 Class<?> c = Class.forName("org.rubato.math.module."+moduleName); //$NON-NLS-1$
                 Method m = c.getMethod("fromXML", new Class[] { XMLReader.class, Element.class }); //$NON-NLS-1$
-                module = (Module)m.invoke(c, new Object[] { reader, moduleElement });
+                module = (org.rubato.math.module.Module)m.invoke(c, new Object[] { reader, moduleElement });
             }
             catch (Exception e) {
                 reader.setError("Cannot build module from %%1.", moduleName);
@@ -134,7 +134,7 @@ public class Dispatcher {
     }
 
     
-    public void addModule(XMLInputOutput<Module> dispatch) {
+    public void addModule(XMLInputOutput<org.rubato.math.module.Module> dispatch) {
         modules.put(dispatch.getElementTypeName(), dispatch);
     }
     
@@ -266,7 +266,7 @@ public class Dispatcher {
     }
 
     
-    private HashMap<String,XMLInputOutput<Module>> modules = new HashMap<String,XMLInputOutput<Module>>();
+    private HashMap<String,XMLInputOutput<org.rubato.math.module.Module>> modules = new HashMap<String,XMLInputOutput<org.rubato.math.module.Module>>();
     private HashMap<String,XMLInputOutput<ModuleMorphism>> moduleMorphisms = new HashMap<String,XMLInputOutput<ModuleMorphism>>();
     private HashMap<String,XMLInputOutput<ModuleElement>> elements = new HashMap<String,XMLInputOutput<ModuleElement>>();
     private HashMap<String,XMLInputOutput<MorphismMap>> morphismMaps = new HashMap<String,XMLInputOutput<MorphismMap>>();

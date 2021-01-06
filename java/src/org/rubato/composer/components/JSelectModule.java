@@ -205,8 +205,8 @@ public class JSelectModule
     /**
      * Returns the constructed module.
      */
-    public Module getModule() {
-        Module module = null;
+    public org.rubato.math.module.Module getModule() {
+        org.rubato.math.module.Module module = null;
         int dim = polSwitch.isSelected()?1:getDimension();
         switch (ringSelect.getSelectedIndex()) {
         case ZRING: {

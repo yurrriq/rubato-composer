@@ -36,7 +36,7 @@ public class JSimpleNumberEntry
         extends JSimpleEntry
         implements CaretListener {
 
-    public JSimpleNumberEntry(Module module) {
+    public JSimpleNumberEntry(org.rubato.math.module.Module module) {
         this.module = module;
         int dim = module.getDimension();
         
@@ -112,7 +112,7 @@ public class JSimpleNumberEntry
     }
 
     
-    public static String getSymbol(Module module) {
+    public static String getSymbol(org.rubato.math.module.Module module) {
         String s = "";  //$NON-NLS-1$
         if (module instanceof ZFreeModule) {
             s = "Z"; //$NON-NLS-1$
@@ -154,7 +154,7 @@ public class JSimpleNumberEntry
     
     
     private JTextField[] inputFields;
-    private Module       module = null;
+    private org.rubato.math.module.Module       module = null;
     
     private final static UserPreferences prefs = UserPreferences.getUserPreferences();
 }

@@ -337,7 +337,7 @@ public final class AddressEvalRubette
         statusline.clear();
         int t = evalTypeSelect.getSelectedIndex();
         if (t == EVAL_TYPE_ELEMENT) {
-            Module mod = elementEntry.getModule();
+            org.rubato.math.module.Module mod = elementEntry.getModule();
             ModuleElement el = elementEntry.getModuleElement();
             if (mod == null) {
                 statusline.setError(NOMODULE_ERROR);
@@ -354,7 +354,7 @@ public final class AddressEvalRubette
         }
         else if (t == EVAL_TYPE_LIST) {
             Form oform = outputFormSelect.getForm();
-            Module mod = listModuleEntry.getModule();
+            org.rubato.math.module.Module mod = listModuleEntry.getModule();
             List<ModuleElement> list = elementList.getElements();
             if (oform == null) {
                 statusline.setError(NOOUTPUTFORM_ERROR);
@@ -579,7 +579,7 @@ public final class AddressEvalRubette
                 reader.setError(Messages.getString("AddressEvalRubette.missingelement"), MODULE); //$NON-NLS-1$
                 return null;
             }
-            Module module0 = reader.parseModule(child);
+            org.rubato.math.module.Module module0 = reader.parseModule(child);
             if (module0 == null) {
                 return null;
             }
@@ -647,7 +647,7 @@ public final class AddressEvalRubette
     private void layoutAddressPanel(int type) {
         addressPanel.removeAll();
         if (type == EVAL_TYPE_ELEMENT) {
-            Module m = (module == null)?ZRing.ring:module;
+            org.rubato.math.module.Module m = (module == null)?ZRing.ring:module;
             elementEntry = new JModuleElementEntry(m);
             elementEntry.setBorder(makeTitledBorder(Messages.getString("AddressEvalRubette.moduleelement"))); //$NON-NLS-1$
             elementEntry.setToolTipText(Messages.getString("AddressEvalRubette.selectelement")); //$NON-NLS-1$
@@ -666,7 +666,7 @@ public final class AddressEvalRubette
             }
             box.add(outputFormSelect);
             
-            Module m = (module == null)?ZRing.ring:module;
+            org.rubato.math.module.Module m = (module == null)?ZRing.ring:module;
             
             listModuleEntry = new JModuleEntry();
             listModuleEntry.setBorder(makeTitledBorder(Messages.getString("AddressEvalRubette.elementmodule"))); //$NON-NLS-1$
@@ -739,7 +739,7 @@ public final class AddressEvalRubette
     }
 
     
-    private boolean isGraphical(Module module) {
+    private boolean isGraphical(org.rubato.math.module.Module module) {
         if (module == CRing.ring) {
             return true;
         }
@@ -852,7 +852,7 @@ public final class AddressEvalRubette
     private JRadioButton        listButton      = null;
     
     private Form          outputForm    = null;
-    private Module        module        = null;
+    private org.rubato.math.module.Module        module        = null;
     private ModuleElement moduleElement = null;
     private int           evalType      = EVAL_TYPE_NULL;
     

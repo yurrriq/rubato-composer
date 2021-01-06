@@ -39,8 +39,8 @@ abstract class SimpleLimitReformer extends SimpleReformer {
      * The factor forms of the limit form must be simple forms. 
      */
     public static SimpleReformer make(SimpleForm from, LimitForm to) {
-        List<Module> toModules = new LinkedList<Module>();
-        List<Module> fromModules = new LinkedList<Module>();
+        List<org.rubato.math.module.Module> toModules = new LinkedList<org.rubato.math.module.Module>();
+        List<org.rubato.math.module.Module> fromModules = new LinkedList<org.rubato.math.module.Module>();
         List<ModuleMorphism> maps = new LinkedList<ModuleMorphism>();
         
         // retrieve the modules from the limit form
@@ -56,7 +56,7 @@ abstract class SimpleLimitReformer extends SimpleReformer {
         if (dim == from.getModule().getDimension()) {
             Ring ring = from.getModule().getRing();
             for (Module toModule : toModules) {
-                Module fromModule = ring.getFreeModule(toModule.getDimension());
+                org.rubato.math.module.Module fromModule = ring.getFreeModule(toModule.getDimension());
                 ModuleMorphism map = CanonicalMorphism.make(fromModule, toModule);
                 if (map == null) {
                     return null;
@@ -74,11 +74,11 @@ abstract class SimpleLimitReformer extends SimpleReformer {
     }
 
     
-    private static boolean collectModules(LimitForm to, List<Module> toModules) {
+    private static boolean collectModules(LimitForm to, List<org.rubato.math.module.Module> toModules) {
         for (int i = 0; i < to.getFormCount(); i++) {
             Form f = to.getForm(i);
             if (f instanceof SimpleForm) {
-                Module fromModule = ((SimpleForm)f).getModule(); 
+                org.rubato.math.module.Module fromModule = ((SimpleForm)f).getModule(); 
                 toModules.add(fromModule);
             }
             else if (f instanceof LimitForm) {
@@ -96,7 +96,7 @@ abstract class SimpleLimitReformer extends SimpleReformer {
     
     private static class SimpleLimitFreeReformer extends SimpleLimitReformer {
         
-        public SimpleLimitFreeReformer(List<Module> fromModules, List<ModuleMorphism> maps, LimitForm to) {
+        public SimpleLimitFreeReformer(List<org.rubato.math.module.Module> fromModules, List<ModuleMorphism> maps, LimitForm to) {
             this.fromModules = fromModules;
             this.maps = maps;
             this.to = to;
@@ -104,7 +104,7 @@ abstract class SimpleLimitReformer extends SimpleReformer {
     
         public Denotator reform(Denotator d)
                 throws RubatoException {
-            Module address = d.getAddress();
+            org.rubato.math.module.Module address = d.getAddress();
             ModuleElement fromElement = ((SimpleDenotator)d).getElement();
             List<ModuleElement> elements = new LinkedList<ModuleElement>();
             List<ModuleElement> toElements = new LinkedList<ModuleElement>();
@@ -124,7 +124,7 @@ abstract class SimpleLimitReformer extends SimpleReformer {
             return distributeElements(toElements, address, to);
         }
         
-        private Denotator distributeElements(List<ModuleElement> toElements, Module address, LimitForm toForm) {
+        private Denotator distributeElements(List<ModuleElement> toElements, org.rubato.math.module.Module address, LimitForm toForm) {
             List<Denotator> list = new LinkedList<Denotator>();
             for (Form f : toForm.getForms()) {
                 if (f instanceof LimitForm) {
@@ -137,7 +137,7 @@ abstract class SimpleLimitReformer extends SimpleReformer {
             return LimitDenotator._make_unsafe(null, address, toForm, list);
         }
         
-        private List<Module>         fromModules;
+        private List<org.rubato.math.module.Module>         fromModules;
         private List<ModuleMorphism> maps;
         private LimitForm            to;
     }

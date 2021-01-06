@@ -77,7 +77,7 @@ manual.pdf: manual.ps
 	$(PS2PDF) manual.ps
 
 %.eps: %.png
-	bmeps -p3 -c -erf8 $^ $@
+	convert $^ $@
 
 %.pdf: %.eps
 	epstopdf $^

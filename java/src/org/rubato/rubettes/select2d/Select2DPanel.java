@@ -64,7 +64,7 @@ class Select2DPanel
         model.setDenotators(denotators);
         sliderPanel.setVisible(false);
         if (denotators != null && denotators.size() > 0) {
-            Module address = denotators.get(0).getAddress();
+            org.rubato.math.module.Module address = denotators.get(0).getAddress();
             sliderPanel.removeAll();
             elementSlider = JElementSlider.make(address);
             if (elementSlider != null) {
@@ -91,7 +91,7 @@ class Select2DPanel
         if (path != null) {
             xAxisTree.setSelectedPath(path);
             model.unsetXAxis();
-            Module module = xAxisTree.getSelectedModule();
+            org.rubato.math.module.Module module = xAxisTree.getSelectedModule();
             if (module != null) {
                 model.setXAxis(module, xAxisTree.getSelectedPath());
             }
@@ -104,7 +104,7 @@ class Select2DPanel
         if (path != null) {
             yAxisTree.setSelectedPath(path);
             model.unsetYAxis();
-            Module module = yAxisTree.getSelectedModule();
+            org.rubato.math.module.Module module = yAxisTree.getSelectedModule();
             if (module != null) {
                 model.setYAxis(module, yAxisTree.getSelectedPath());
             }
@@ -386,7 +386,7 @@ class Select2DPanel
         Object src = e.getSource();
         if (src == xAxisTree) {
             model.unsetXAxis();
-            Module module = xAxisTree.getSelectedModule();
+            org.rubato.math.module.Module module = xAxisTree.getSelectedModule();
             if (module != null) {
                 model.setXAxis(module, xAxisTree.getSelectedPath());
             }
@@ -394,7 +394,7 @@ class Select2DPanel
         }
         else if (src == yAxisTree) {
             model.unsetYAxis();
-            Module module = yAxisTree.getSelectedModule();
+            org.rubato.math.module.Module module = yAxisTree.getSelectedModule();
             if (module != null) {
                 model.setYAxis(module, yAxisTree.getSelectedPath());
             }

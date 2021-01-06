@@ -66,7 +66,7 @@ public class JMorphismDialog
     }
     
     
-    public JMorphismDialog(Frame frame, boolean modal, boolean naming, Module domain, Module codomain) {
+    public JMorphismDialog(Frame frame, boolean modal, boolean naming, org.rubato.math.module.Module domain, org.rubato.math.module.Module codomain) {
         super(frame, Messages.getString("JMorphismDialog.createmorphism"), modal); //$NON-NLS-1$
         this.domain   = domain;
         this.codomain = codomain;
@@ -214,12 +214,12 @@ public class JMorphismDialog
     }
     
     
-    public Module getDomain() {
+    public org.rubato.math.module.Module getDomain() {
         return domain;
     }
     
     
-    public Module getCodomain() {
+    public org.rubato.math.module.Module getCodomain() {
         return codomain;
     }
     
@@ -598,8 +598,8 @@ public class JMorphismDialog
     private JButton        cancelButton;
     private JMorphismType  jmorphismType = null;
     
-    Module  domain;
-    Module  codomain;
+    org.rubato.math.module.Module  domain;
+    org.rubato.math.module.Module  codomain;
     private boolean naming;
     private boolean nameok;
 

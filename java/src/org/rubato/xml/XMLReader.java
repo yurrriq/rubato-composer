@@ -273,7 +273,7 @@ public final class XMLReader implements RubatoDictionary {
         String name = moduleDefinitionNode.getAttribute(NAME_ATTR);
         Element moduleNode = getChild(moduleDefinitionNode, MODULE);
         if (moduleNode != null) {
-            Module module = parseModule(moduleNode);
+            org.rubato.math.module.Module module = parseModule(moduleNode);
             if (module != null) {
                 modules.put(name, module);
             }
@@ -289,10 +289,10 @@ public final class XMLReader implements RubatoDictionary {
      * Parses the module starting from the given XML element.
      * @return the parsed module or null if parsing failed
      */
-    public Module parseModule(Element moduleNode) {
+    public org.rubato.math.module.Module parseModule(Element moduleNode) {
         // case 1: a reference is given, try to resolve it
         if (moduleNode.hasAttribute(REF_ATTR)) {
-            Module module = modules.get(moduleNode.getAttribute(REF_ATTR));
+            org.rubato.math.module.Module module = modules.get(moduleNode.getAttribute(REF_ATTR));
             if (module == null) {
                 // could not resolve the reference
                 setError("Module reference %%1 is not defined", moduleNode.getAttribute(REF_ATTR));
@@ -311,7 +311,7 @@ public final class XMLReader implements RubatoDictionary {
             try {
                 Class<?> cls = Class.forName(moduleClass);
                 Method method = cls.getMethod("fromXML", new Class[] { XMLReader.class, Element.class }); //$NON-NLS-1$
-                return (Module)method.invoke(cls, new Object[] { this, moduleNode });
+                return (org.rubato.math.module.Module)method.invoke(cls, new Object[] { this, moduleNode });
             }
             catch (ClassNotFoundException e) {
                 setError("Module class %%1 not found", moduleClass);                        
@@ -991,8 +991,8 @@ public final class XMLReader implements RubatoDictionary {
      * global repository.
      * @return null if no such module exists
      */
-    public Module getModule(String name) {
-        Module module = modules.get(name);
+    public org.rubato.math.module.Module getModule(String name) {
+        org.rubato.math.module.Module module = modules.get(name);
         if (module == null) {
             module = repository.getModule(name);
         }

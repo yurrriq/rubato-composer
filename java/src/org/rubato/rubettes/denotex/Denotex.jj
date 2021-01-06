@@ -206,9 +206,9 @@ public final class DenotexParser {
             case Yoneda.SIMPLE: {
                 try {
                     if (crs.size() == 1)
-                        form = new SimpleForm(n, (Module)crs.get(0));
+                        form = new SimpleForm(n, (org.rubato.math.module.Module)crs.get(0));
                     else
-                        form = new SimpleForm(n, (Module)crs.get(0),
+                        form = new SimpleForm(n, (org.rubato.math.module.Module)crs.get(0),
                                                       (ModuleElement)crs.get(1),
                                                       (ModuleElement)crs.get(2));
                 } catch(Exception e) { throw parseError("Form build failed: " + e.getMessage()); }
@@ -753,7 +753,7 @@ Module address() :
 }
 
 
-List cds(Module address, Form form) :
+List cds(org.rubato.math.module.Module address, Form form) :
 {
     List l;
 }
@@ -771,7 +771,7 @@ List cds(Module address, Form form) :
 }
 
 
-List simpleCds(Module address, Form form) : 
+List simpleCds(org.rubato.math.module.Module address, Form form) : 
 {
     checkDelimiters(Yoneda.SIMPLE, form.getType());
     Module m = form.getIdentifier().getCodomainModule();
@@ -786,7 +786,7 @@ List simpleCds(Module address, Form form) :
     }
 }
 
-List limitCds(Module address, Form form) :
+List limitCds(org.rubato.math.module.Module address, Form form) :
 {
     checkDelimiters(Yoneda.LIMIT, form.getType());
     FormDiagram diag = (FormDiagram)form.getIdentifier().getCodomainDiagram();
@@ -820,7 +820,7 @@ List limitCds(Module address, Form form) :
 }
 
 
-List colimitCds(Module address, Form form) :
+List colimitCds(org.rubato.math.module.Module address, Form form) :
 {
     checkDelimiters(Yoneda.COLIMIT, form.getType());
     FormDiagram diag = (FormDiagram)form.getIdentifier().getCodomainDiagram();
@@ -844,7 +844,7 @@ List colimitCds(Module address, Form form) :
 }
 
 
-List powerCds(Module address, Form form) :
+List powerCds(org.rubato.math.module.Module address, Form form) :
 {
     checkDelimiters(Yoneda.POWER, form.getType());
     FormDiagram diag = (FormDiagram)form.getIdentifier().getCodomainDiagram();
@@ -863,7 +863,7 @@ List powerCds(Module address, Form form) :
 }
 
 
-List listCds(Module address, Form form) :
+List listCds(org.rubato.math.module.Module address, Form form) :
 {
     checkDelimiters(Yoneda.LIST, form.getType());
     FormDiagram diag = (FormDiagram)form.getIdentifier().getCodomainDiagram();
@@ -882,7 +882,7 @@ List listCds(Module address, Form form) :
 }
 
 
-Denotator denotator(Module address, Form form) :
+Denotator denotator(org.rubato.math.module.Module address, Form form) :
 {
     Denotator d = null;
     NameEntry name;
@@ -1024,7 +1024,7 @@ Module basicModule() :
         else {
             if (sub != -1 || sup != -1)
                 throw parseError("Sub- or superscript not allowed for module name.");
-            Module m = (Module)t.modules().get(n);
+            Module m = (org.rubato.math.module.Module)t.modules().get(n);
             if (m == null) 
                 throw parseError("Module '" + n + "' not defined.");
             return m;
@@ -1045,7 +1045,7 @@ String basicType() :
 }
 
 
-ModuleElement moduleElement(Module m) : 
+ModuleElement moduleElement(org.rubato.math.module.Module m) : 
 {
     LinkedList elements;
 }
@@ -1057,7 +1057,7 @@ ModuleElement moduleElement(Module m) :
 }
 
 
-LinkedList compositeElement(Module m) :
+LinkedList compositeElement(org.rubato.math.module.Module m) :
 {
 	LinkedList elements = new LinkedList();
 	LinkedList newElements;
@@ -1098,7 +1098,7 @@ LinkedList compositeElement(Module m) :
 }
 
 
-LinkedList basicElement(Module m) :
+LinkedList basicElement(org.rubato.math.module.Module m) :
 {
 	LinkedList elements = new LinkedList();
 }

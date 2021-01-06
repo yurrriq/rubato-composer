@@ -62,7 +62,7 @@ public class SplitMorphism extends ModuleMorphism {
             else if (info[ALL_CONSTANT]) {
                 LinkedList<ModuleElement> resList = new LinkedList<ModuleElement>();
                 for (ModuleMorphism m : morphisms) {
-                    Module domain = m.getDomain();
+                    org.rubato.math.module.Module domain = m.getDomain();
                     int dim = domain.getDimension();
                     try {
                         ModuleElement res = m.map(domain.getZero());
@@ -139,7 +139,7 @@ public class SplitMorphism extends ModuleMorphism {
             int j = 0;
             for (int i = 0; i < morphisms.length; i++) {
                 ModuleMorphism m = morphisms[i];
-                Module domain = m.getDomain();
+                org.rubato.math.module.Module domain = m.getDomain();
                 int dim = domain.getDimension();
                 LinkedList<ModuleElement> list = new LinkedList<ModuleElement>();
                 for (int k = 0; k < dim; k++) {
@@ -238,7 +238,7 @@ public class SplitMorphism extends ModuleMorphism {
         assert(element.getAttribute(TYPE_ATTR).equals(getElementTypeName()));
         Element childElement = XMLReader.getChild(element, MODULE);
         if (childElement != null) {
-            Module domain = reader.parseModule(childElement);
+            org.rubato.math.module.Module domain = reader.parseModule(childElement);
             if (domain == null) {
                 return null;
             }
@@ -295,7 +295,7 @@ public class SplitMorphism extends ModuleMorphism {
         Ring ring = module.getRing();
         int dim = 0;
         for (ModuleMorphism m : morphisms) {
-            Module domain = m.getDomain();
+            org.rubato.math.module.Module domain = m.getDomain();
             if (!domain.equals(m.getCodomain())) {
                 return false;
             }

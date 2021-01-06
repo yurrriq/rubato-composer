@@ -57,11 +57,11 @@ public abstract class EmbeddingMorphism extends ModuleMorphism {
      * 
      * @return null if no embedding of the requested kind can be built
      */
-    public static ModuleMorphism make(Module domain, Module codomain) {
+    public static ModuleMorphism make(org.rubato.math.module.Module domain, org.rubato.math.module.Module codomain) {
         ModuleMorphism m = null;
         
         // check if the requested embedding is in the cache
-        Pair<Module,Module> pair = Pair.makePair(domain, codomain);
+        Pair<org.rubato.math.module.Module,org.rubato.math.module.Module> pair = Pair.makePair(domain, codomain);
         if ((m = embeddings.get(pair)) == null) {
             // try to create the embedding
             if (domain instanceof FreeModule && codomain instanceof FreeModule) {
@@ -229,8 +229,8 @@ public abstract class EmbeddingMorphism extends ModuleMorphism {
     
     public ModuleMorphism fromXML(XMLReader reader, Element element) {
         assert(element.getAttribute(TYPE_ATTR).equals(getElementTypeName()));
-        Module m1;
-        Module m2;
+        org.rubato.math.module.Module m1;
+        org.rubato.math.module.Module m2;
         Element childElement = XMLReader.getChild(element, MODULE);
         if (childElement != null) {
             m1 = reader.parseModule(childElement);
@@ -812,5 +812,5 @@ public abstract class EmbeddingMorphism extends ModuleMorphism {
     }
 
     
-    private static HashMap<Pair<Module,Module>,ModuleMorphism> embeddings = new HashMap<Pair<Module,Module>,ModuleMorphism>();
+    private static HashMap<Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>,ModuleMorphism> embeddings = new HashMap<Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>,ModuleMorphism>();
 }

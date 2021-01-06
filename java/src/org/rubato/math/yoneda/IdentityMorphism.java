@@ -43,7 +43,7 @@ public abstract class IdentityMorphism extends Morphism {
     /**
      * Returns the module of this identity morphism.
      */
-    public abstract Module getModule();
+    public abstract org.rubato.math.module.Module getModule();
 
     /**
      * Returns the type of this identity morphism.
@@ -58,11 +58,11 @@ public abstract class IdentityMorphism extends Morphism {
         return getDiagram(); 
     }
     
-    public Module getDomainModule() {
+    public org.rubato.math.module.Module getDomainModule() {
         return getModule();
     }
     
-    public Module getCodomainModule() {
+    public org.rubato.math.module.Module getCodomainModule() {
         return getModule();
     }
     

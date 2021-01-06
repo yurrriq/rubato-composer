@@ -48,7 +48,7 @@ public class GenericBasisMorphism extends ModuleMorphism {
      * 
      * @throws DomainException if rings don't match
      */
-    public static GenericBasisMorphism make(FreeModule domain, Module codomain, ModuleElement[] fi)
+    public static GenericBasisMorphism make(FreeModule domain, org.rubato.math.module.Module codomain, ModuleElement[] fi)
             throws DomainException {
         if (domain.getRing().equals(codomain.getRing())) {
             ModuleElement[] fis = new ModuleElement[domain.getDimension()+1];
@@ -167,8 +167,8 @@ public class GenericBasisMorphism extends ModuleMorphism {
     
     public GenericBasisMorphism fromXML(XMLReader reader, Element element) {
         assert(element.getAttribute(TYPE_ATTR).equals(getElementTypeName()));
-        Module domain = null;
-        Module codomain = null;
+        org.rubato.math.module.Module domain = null;
+        org.rubato.math.module.Module codomain = null;
         Element childElement = XMLReader.getChild(element, MODULE);
         if (childElement != null) {
             domain = reader.parseModule(childElement);
@@ -232,7 +232,7 @@ public class GenericBasisMorphism extends ModuleMorphism {
     }
     
     
-    private GenericBasisMorphism(FreeModule domain, Module codomain, ModuleElement[] fi) {
+    private GenericBasisMorphism(FreeModule domain, org.rubato.math.module.Module codomain, ModuleElement[] fi) {
         super(domain, codomain);
         this.fi = fi;
         fit = new ModuleElement[fi.length];

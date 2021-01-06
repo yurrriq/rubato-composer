@@ -40,7 +40,7 @@ public final class TranslationMorphism extends ModuleMorphism {
      * 
      * @return null if translation is not valid
      */
-    static public ModuleMorphism make(Module module, ModuleElement element) {
+    static public ModuleMorphism make(org.rubato.math.module.Module module, ModuleElement element) {
         if (!module.hasElement(element)) {
             return null;
         }
@@ -138,7 +138,7 @@ public final class TranslationMorphism extends ModuleMorphism {
         assert(element.getAttribute(TYPE_ATTR).equals(getElementTypeName()));
         Element childElement = XMLReader.getChild(element, MODULE);
         if (childElement != null) {
-            Module f = reader.parseModule(childElement);
+            org.rubato.math.module.Module f = reader.parseModule(childElement);
             Element el = XMLReader.getNextSibling(childElement, MODULEELEMENT);
             if (el == null) {
                 reader.setError("Type %%1 is missing second child of type <%2>.", getElementTypeName(), MODULEELEMENT);
@@ -177,7 +177,7 @@ public final class TranslationMorphism extends ModuleMorphism {
     }
     
     
-    private TranslationMorphism(Module domain, ModuleElement translate) {
+    private TranslationMorphism(org.rubato.math.module.Module domain, ModuleElement translate) {
         super(domain, domain);
         this.translate = translate;
     }

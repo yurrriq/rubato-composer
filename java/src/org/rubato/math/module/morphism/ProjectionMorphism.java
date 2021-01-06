@@ -138,7 +138,7 @@ public class ProjectionMorphism extends ModuleMorphism {
         int index0 = XMLReader.getIntAttribute(element, INDEX_ATTR, 0);
         Element childElement = XMLReader.getChild(element, MODULE);
         if (childElement != null) {
-            Module m = reader.parseModule(childElement);
+            org.rubato.math.module.Module m = reader.parseModule(childElement);
             if (m == null) {
                 return null;
             }

@@ -54,7 +54,7 @@ public abstract class CastMorphism extends ModuleMorphism {
      */
     public static ModuleMorphism make(Ring domain, Ring codomain) {
         // check if the required morphism is in the cache
-        Pair<Module,Module> pair = Pair.makePair((Module)domain, (Module)codomain);
+        Pair<org.rubato.math.module.Module,org.rubato.math.module.Module> pair = Pair.makePair((org.rubato.math.module.Module)domain, (org.rubato.math.module.Module)codomain);
         ModuleMorphism morphism = castingMorphisms.get(pair);
         if (morphism == null) {
             // if not, try to create it
@@ -274,8 +274,8 @@ public abstract class CastMorphism extends ModuleMorphism {
     
     public ModuleMorphism fromXML(XMLReader reader, Element element) {
         assert(element.getAttribute(TYPE_ATTR).equals(getElementTypeName()));
-        Module m1;
-        Module m2;
+        org.rubato.math.module.Module m1;
+        org.rubato.math.module.Module m2;
         Element childElement = XMLReader.getChild(element, MODULE);
         if (childElement != null) {
             m1 = reader.parseModule(childElement);
@@ -310,7 +310,7 @@ public abstract class CastMorphism extends ModuleMorphism {
     }
 
     
-    private static HashMap<Pair<Module,Module>,ModuleMorphism> castingMorphisms = new HashMap<Pair<Module,Module>,ModuleMorphism>();
+    private static HashMap<Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>,ModuleMorphism> castingMorphisms = new HashMap<Pair<org.rubato.math.module.Module,org.rubato.math.module.Module>,ModuleMorphism>();
     
     private static final XMLInputOutput<ModuleMorphism> xmlIO =
         CastMorphism.make(RRing.ring, ZRing.ring);
@@ -325,7 +325,7 @@ public abstract class CastMorphism extends ModuleMorphism {
     }
 
     
-    protected CastMorphism(Module domain, Module codomain) {
+    protected CastMorphism(org.rubato.math.module.Module domain, org.rubato.math.module.Module codomain) {
         super(domain, codomain);
     }
 }
